@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14251f">
+<meta name="description" content="Central Financeira IA — controle financeiro da Raffani.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Central Financeira IA · Raffani</title>
+<style>
+:root{--bg:#f4f6f4;--panel:#fff;--ink:#17231e;--muted:#6d7972;--line:#e2e8e3;--green:#1d6b4c;--green2:#e8f3ed;--red:#b54747;--amber:#a76b16;--shadow:0 8px 28px #14251f0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1200px;margin:auto;padding:22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;background:var(--green);color:white;display:grid;place-items:center;font-weight:800;font-size:20px}.brand h1{font-size:19px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.header-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 14px;color:var(--ink);font-weight:600}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.soft{background:var(--green2);border-color:transparent;color:var(--green)}.btn.danger{color:var(--red)}
+nav{display:flex;gap:7px;overflow:auto;padding:5px 0 15px;margin-bottom:18px}.navbtn{white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:10px;font-weight:650}.navbtn.active{background:var(--green2);color:var(--green)}
+h2{font-size:22px;margin:0 0 5px}.sub{color:var(--muted);margin:0 0 20px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.metric-label{font-size:12px;color:var(--muted);font-weight:650}.metric{font-size:25px;font-weight:750;margin:8px 0 2px;letter-spacing:-.5px}.metric-note{font-size:12px;color:var(--muted)}.section-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}.card h3{font-size:15px;margin:0 0 14px}.empty{padding:26px 10px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--ink);margin-bottom:4px}
+.table-wrap{overflow:auto;background:white;border:1px solid var(--line);border-radius:14px}.table{width:100%;border-collapse:collapse;min-width:650px}.table th,.table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}.table th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;background:#fafcfb}.table tr:last-child td{border-bottom:0}.amount.in{color:var(--green);font-weight:700}.amount.out{color:var(--red);font-weight:700}.pill{display:inline-block;padding:4px 8px;border-radius:20px;background:#f0f2f0;color:#536158;font-size:11px;font-weight:700}.pill.paid{background:#e8f3ed;color:var(--green)}.pill.pending{background:#fff4df;color:#98600f}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:18px 0;flex-wrap:wrap}.filters{display:flex;gap:8px;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea,.filters input,.filters select{width:100%;border:1px solid var(--line);background:white;border-radius:10px;padding:10px 11px;color:var(--ink);min-width:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.wide{grid-column:1/-1}
+.modal-back{position:fixed;inset:0;background:#101b16a6;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modal-back.show{display:flex}.modal{width:min(560px,100%);max-height:92vh;overflow:auto;background:white;border-radius:18px;padding:22px;box-shadow:0 20px 80px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h3{margin:0}.close{border:0;background:#f1f4f1;border-radius:9px;padding:7px 10px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}
+.barline{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:12px}.barline span:first-child{width:100px;color:var(--muted)}.bar{height:9px;background:#edf1ed;border-radius:10px;flex:1;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:10px}.barline b{width:90px;text-align:right;font-size:12px}
+.notice{padding:12px 14px;background:#fff7e8;border:1px solid #f2dfbd;color:#77521d;border-radius:12px;font-size:12px;margin:14px 0}.hidden{display:none!important}.muted{color:var(--muted)}.right{text-align:right}.filelabel{display:inline-flex;align-items:center;gap:8px}.filelabel input{display:none}
+footer{color:var(--muted);font-size:11px;text-align:center;padding:30px 0 10px}
+@media(max-width:800px){.app{padding:16px}.grid{grid-template-columns:repeat(2,1fr)}.section-grid{grid-template-columns:1fr}.metric{font-size:22px}}
+@media(max-width:460px){header{align-items:flex-start}.brand h1{font-size:16px}.header-actions .btn{padding:9px}.grid{gap:9px}.card{padding:14px}.metric{font-size:20px}.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">CF</div><div><h1>Central Financeira IA</h1><p>RAFFANI · CONTROLE FINANCEIRO</p></div></div>
+ <div class="header-actions">
+  <button class="btn" id="emailTop">Ler e-mail</button>
+  <button class="btn primary" id="newEntryTop">+ Lançamento</button>
+ </div>
+</header>
+<nav id="nav">
+ <button class="navbtn active" data-page="inicio">Visão geral</button><button class="navbtn" data-page="lancamentos">Lançamentos</button><button class="navbtn" data-page="contas">Contas bancárias</button><button class="navbtn" data-page="relatorios">Relatórios</button><button class="navbtn" data-page="backup">Dados e backup</button>
+</nav>
+<main>
+<section id="page-inicio">
+ <h2>Visão geral</h2><p class="sub">Resumo financeiro da Raffani. Os valores refletem somente os dados cadastrados neste aparelho.</p>
+ <div class="grid">
+  <div class="card"><div class="metric-label">Saldo inicial cadastrado</div><div class="metric" id="mOpening">R$ 0,00</div><div class="metric-note">Soma dos saldos iniciais das contas</div></div>
+  <div class="card"><div class="metric-label">Entradas confirmadas</div><div class="metric" id="mIn">R$ 0,00</div><div class="metric-note">No mês selecionado</div></div>
+  <div class="card"><div class="metric-label">Saídas confirmadas</div><div class="metric" id="mOut">R$ 0,00</div><div class="metric-note">No mês selecionado</div></div>
+  <div class="card"><div class="metric-label">A pagar / receber pendente</div><div class="metric" id="mPending">R$ 0,00</div><div class="metric-note">Total em aberto</div></div>
+ </div>
+ <div class="section-grid">
+  <div class="card"><h3>Fluxo dos últimos 6 meses</h3><div id="flowChart"></div></div>
+  <div class="card"><h3>Próximos vencimentos</h3><div id="upcoming"></div></div>
+ </div>
+ <div class="card" style="margin-top:14px"><h3>Últimos lançamentos</h3><div id="recent"></div></div>
+</section>
+<section id="page-lancamentos" class="hidden">
+ <h2>Lançamentos</h2><p class="sub">Registre contas a pagar, receber e movimentações já realizadas.</p>
+ <div class="toolbar"><div class="filters"><input id="searchEntry" placeholder="Buscar descrição..." style="width:190px"><select id="filterStatus"><option value="">Todos os status</option><option value="pending">Pendente</option><option value="paid">Confirmado</option></select><select id="filterDirection"><option value="">Entradas e saídas</option><option value="in">Entrada</option><option value="out">Saída</option></select></div><div class="filters"><label class="btn filelabel">Importar planilha<input id="entrySheetFile" type="file" accept=".csv,.txt,.xlsx,.xls"></label><button class="btn" id="readEmailBtn">Ler e-mail</button><button class="btn primary" id="newEntry">+ Novo lançamento</button></div></div>
+ <div class="table-wrap" id="entriesTable"></div>
+</section>
+<section id="page-contas" class="hidden">
+ <h2>Contas bancárias</h2><p class="sub">Cadastre bancos e saldos iniciais para acompanhar o caixa.</p>
+ <div class="toolbar"><span class="muted" id="accountCount"></span><button class="btn primary" id="newAccount">+ Nova conta</button></div><div id="accountsGrid" class="grid"></div>
+</section>
+<section id="page-relatorios" class="hidden">
+ <h2>Relatórios</h2><p class="sub">Indicadores calculados a partir dos lançamentos cadastrados.</p>
+ <div class="toolbar"><div class="filters"><label class="muted">Mês de referência <input type="month" id="reportMonth"></label></div><button class="btn" id="exportCsv">Exportar lançamentos CSV</button></div>
+ <div class="grid"><div class="card"><div class="metric-label">Entradas confirmadas</div><div class="metric" id="rIn">R$ 0,00</div></div><div class="card"><div class="metric-label">Saídas confirmadas</div><div class="metric" id="rOut">R$ 0,00</div></div><div class="card"><div class="metric-label">Resultado do período</div><div class="metric" id="rNet">R$ 0,00</div></div><div class="card"><div class="metric-label">Itens pendentes</div><div class="metric" id="rPend">0</div></div></div>
+ <div class="card" style="margin-top:14px"><h3>Resumo por categoria — saídas confirmadas</h3><div id="categoryReport"></div></div>
+</section>
+<section id="page-backup" class="hidden">
+ <h2>Dados e backup</h2><p class="sub">Seus dados ficam armazenados localmente neste navegador. Faça cópias de segurança com frequência.</p>
+ <div class="notice"><b>Atenção:</b> esta versão não envia dados para a internet. Se limpar os dados do navegador, trocar de aparelho ou perder o dispositivo, será necessário restaurar um backup. O arquivo exportado contém informações financeiras; guarde-o em local protegido.</div>
+ <div class="card"><h3>Cópia de segurança</h3><p class="muted">Exporte todos os cadastros e lançamentos para um arquivo JSON. Para recuperar, importe esse arquivo neste mesmo aplicativo.</p><div class="toolbar"><button class="btn primary" id="backupExport">Baixar backup completo</button><label class="btn filelabel">Restaurar backup<input type="file" id="backupImport" accept=".json,application/json"></label></div><p id="backupMsg" class="muted"></p></div>
+ <div class="card" style="margin-top:14px"><h3>Armazenamento</h3><p id="storageInfo" class="muted"></p><button class="btn danger" id="clearData">Apagar todos os dados deste aparelho</button></div>
+</section>
+</main>
+<footer>Central Financeira IA · Versão independente 1.0 · Dados locais, sem sincronização em nuvem</footer>
+</div>
+<div class="modal-back" id="entryModal"><div class="modal"><div class="modal-head"><h3 id="entryModalTitle">Novo lançamento</h3><button class="close" data-close="entryModal">✕</button></div>
+<form id="entryForm"><input type="hidden" id="entryId"><div class="form-grid">
+ <div class="field"><label>Tipo</label><select id="direction"><option value="out">Saída / a pagar</option><option value="in">Entrada / a receber</option></select></div>
+ <div class="field"><label>Status</label><select id="status"><option value="pending">Pendente</option><option value="paid">Confirmado / realizado</option></select></div>
+ <div class="field wide"><label>Descrição *</label><input id="description" required maxlength="140" placeholder="Ex.: Pagamento de fornecedor"></div>
+ <div class="field"><label>Valor (R$) *</label><input id="amount" required type="number" min="0.01" step="0.01"></div>
+ <div class="field"><label>Vencimento / data *</label><input id="dueDate" required type="date"></div>
+ <div class="field"><label>Conta bancária</label><select id="bankAccount"></select></div>
+ <div class="field"><label>Categoria</label><select id="category"><option>Operacional</option><option>Fornecedores</option><option>Impostos</option><option>Salários</option><option>Vendas</option><option>Serviços</option><option>Transferência</option><option>Outros</option></select></div>
+ <div class="field wide"><label>Observações</label><textarea id="notes" rows="2"></textarea></div>
+</div><div class="modal-actions"><button type="button" class="btn" data-close="entryModal">Cancelar</button><button class="btn primary" type="submit">Salvar lançamento</button></div></form></div></div>
+<div class="modal-back" id="emailModal"><div class="modal"><div class="modal-head"><h3>Ler e-mail e sugerir lançamento</h3><button class="close" data-close="emailModal">✕</button></div>
+<p class="muted">Cole o conteúdo de um e-mail financeiro ou carregue um arquivo .eml. O aplicativo identifica possíveis valores e prepara um lançamento <b>pendente</b> para sua conferência.</p>
+<div class="field"><label>Carregar e-mail (.eml)</label><input id="emailFile" type="file" accept=".eml,.txt,message/rfc822"></div>
+<div class="field"><label>Assunto (opcional)</label><input id="emailSubject" placeholder="Ex.: Boleto fornecedor — vencimento"></div>
+<div class="field"><label>Conteúdo do e-mail</label><textarea id="emailBody" rows="7" placeholder="Cole aqui o texto do e-mail, boleto ou aviso de cobrança..."></textarea></div>
+<div class="notice">Nesta versão, a leitura é feita a partir de e-mails que você fornecer (.eml ou texto colado). Acesso automático à caixa de entrada Gmail/Outlook exige conexão e autorização da conta, ainda não incluídas.</div>
+<div class="modal-actions"><button type="button" class="btn" data-close="emailModal">Cancelar</button><button type="button" class="btn primary" id="analyzeEmail">Identificar lançamento</button></div>
+<div id="emailResult" class="notice hidden"></div>
+</div></div>
+<div class="modal-back" id="accountModal"><div class="modal"><div class="modal-head"><h3>Nova conta bancária</h3><button class="close" data-close="accountModal">✕</button></div>
+<form id="accountForm"><div class="field"><label>Banco *</label><input id="bankName" required placeholder="Ex.: Itaú"></div><div class="field"><label>Identificação da conta *</label><input id="accountLabel" required placeholder="Ex.: Conta corrente principal"></div><div class="form-grid"><div class="field"><label>Tipo</label><select id="accountType"><option value="checking">Corrente</option><option value="savings">Poupança</option><option value="investment">Investimento</option><option value="cash">Caixa</option></select></div><div class="field"><label>Saldo inicial (R$)</label><input id="openingBalance" type="number" step=".01" value="0"></div></div><div class="field"><label>Data do saldo inicial</label><input id="openingDate" type="date"></div><div class="modal-actions"><button type="button" class="btn" data-close="accountModal">Cancelar</button><button class="btn primary">Salvar conta</button></div></form></div></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const KEY='central-financeira-raffani-v1';
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toISOString().slice(0,10);
+const monthNow=()=>today().slice(0,7);
+let db=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{accounts:[],entries:[]}}catch{return {accounts:[],entries:[]}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function uid(){return crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()}
+function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function dateBR(s){if(!s)return '—';let [y,m,d]=s.slice(0,10).split('-');return `${d}/${m}/${y}`}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function accountName(id){let a=db.accounts.find(x=>x.id===id);return a?a.bank+' · '+a.label:'Não vinculada'}
+function showPage(p){document.querySelectorAll('main section').forEach(x=>x.classList.add('hidden'));$('page-'+p).classList.remove('hidden');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===p));renderAll()}
+document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+$('newEntryTop').onclick=$('newEntry').onclick=()=>openEntry();
+$('emailTop').onclick=$('readEmailBtn').onclick=()=>{$('emailSubject').value='';$('emailBody').value='';$('emailResult').classList.add('hidden');$('emailModal').classList.add('show')};
+$('newAccount').onclick=()=>{$('accountForm').reset();$('accountModal').classList.add('show')};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).classList.remove('show'));
+function openEntry(item){$('entryForm').reset();$('entryId').value=item?.id||'';$('entryModalTitle').textContent=item?'Editar lançamento':'Novo lançamento';$('direction').value=item?.direction||'out';$('status').value=item?.status||'pending';$('description').value=item?.description||'';$('amount').value=item?.amount??'';$('dueDate').value=item?.date||today();$('category').value=item?.category||'Operacional';$('notes').value=item?.notes||'';fillAccountSelect(item?.accountId||'');$('entryModal').classList.add('show')}
+function fillAccountSelect(sel){$('bankAccount').innerHTML='<option value="">Não vinculada</option>'+db.accounts.map(a=>`<option value="${a.id}">${escapeHtml(a.bank)} · ${escapeHtml(a.label)}</option>`).join('');$('bankAccount').value=sel}
+$('entryForm').onsubmit=e=>{e.preventDefault();let id=$('entryId').value;let item={id:id||uid(),direction:$('direction').value,status:$('status').value,description:$('description').value.trim(),amount:Number($('amount').value),date:$('dueDate').value,accountId:$('bankAccount').value,category:$('category').value,notes:$('notes').value.trim(),updatedAt:new Date().toISOString()};if(id)db.entries=db.entries.map(x=>x.id===id?{...x,...item}:x);else db.entries.unshift({...item,createdAt:new Date().toISOString()});$('entryModal').classList.remove('show');save()};
+$('accountForm').onsubmit=e=>{e.preventDefault();db.accounts.push({id:uid(),bank:$('bankName').value.trim(),label:$('accountLabel').value.trim(),type:$('accountType').value,opening:Number($('openingBalance').value||0),openingDate:$('openingDate').value||null});$('accountModal').classList.remove('show');save()};
+function removeEntry(id){if(confirm('Excluir este lançamento?')){db.entries=db.entries.filter(x=>x.id!==id);save()}}
+function renderEntries(){let q=$('searchEntry').value.toLowerCase(),st=$('filterStatus').value,di=$('filterDirection').value;let arr=db.entries.filter(x=>(!q||x.description.toLowerCase().includes(q))&&(!st||x.status===st)&&(!di||x.direction===di));$('entriesTable').innerHTML=arr.length?`<table class="table"><thead><tr><th>Data</th><th>Descrição</th><th>Conta</th><th>Tipo</th><th>Status</th><th class="right">Valor</th><th></th></tr></thead><tbody>${arr.map(x=>`<tr><td>${dateBR(x.date)}</td><td><b>${escapeHtml(x.description)}</b><br><span class="muted">${escapeHtml(x.category||'')}</span></td><td>${escapeHtml(accountName(x.accountId))}</td><td>${x.direction==='in'?'Entrada':'Saída'}</td><td><span class="pill ${x.status}">${x.status==='paid'?'Confirmado':'Pendente'}</span></td><td class="right amount ${x.direction}">${money(x.amount)}</td><td><button class="btn" onclick="editEntry('${x.id}')">Editar</button> <button class="btn danger" onclick="removeEntry('${x.id}')">Excluir</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty"><strong>Nenhum lançamento encontrado</strong>Cadastre um lançamento ou importe um extrato.</div>'}
+window.editEntry=id=>openEntry(db.entries.find(x=>x.id===id));
+window.removeEntry=removeEntry;
+function monthTotals(m){let a=db.entries.filter(x=>x.date?.startsWith(m)&&x.status==='paid');return {ins:a.filter(x=>x.direction==='in').reduce((s,x)=>s+x.amount,0),outs:a.filter(x=>x.direction==='out').reduce((s,x)=>s+x.amount,0)}}
+function renderDashboard(){let m=monthNow(),t=monthTotals(m),opening=db.accounts.reduce((s,a)=>s+a.opening,0),pend=db.entries.filter(x=>x.status==='pending').reduce((s,x)=>s+x.amount,0);$('mOpening').textContent=money(opening);$('mIn').textContent=money(t.ins);$('mOut').textContent=money(t.outs);$('mPending').textContent=money(pend);
+let months=[];for(let i=5;i>=0;i--){let d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);let key=d.toISOString().slice(0,7);months.push({key,label:d.toLocaleDateString('pt-BR',{month:'short'}),...monthTotals(key)})}let max=Math.max(1,...months.flatMap(x=>[x.ins,x.outs]));$('flowChart').innerHTML=months.map(x=>`<div class="barline"><span>${x.label}</span><div class="bar"><i style="width:${x.ins/max*100}%"></i></div><b>${money(x.ins)}</b></div><div class="barline" style="margin-top:-7px"><span></span><div class="bar"><i style="width:${x.outs/max*100}%;background:#c46a62"></i></div><b>${money(x.outs)}</b></div>`).join('')+'<p class="muted">Verde: entradas · Vermelho: saídas</p>';
+let up=db.entries.filter(x=>x.status==='pending').sort((a,b)=>(a.date||'').localeCompare(b.date||'')).slice(0,6);$('upcoming').innerHTML=up.length?up.map(x=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)"><div><b>${escapeHtml(x.description)}</b><div class="muted">${dateBR(x.date)} · ${x.direction==='in'?'A receber':'A pagar'}</div></div><b>${money(x.amount)}</b></div>`).join(''):'<div class="empty">Nenhum vencimento pendente cadastrado.</div>';
+let rec=db.entries.slice(0,5);$('recent').innerHTML=rec.length?`<table class="table"><thead><tr><th>Data</th><th>Descrição</th><th>Status</th><th class="right">Valor</th></tr></thead><tbody>${rec.map(x=>`<tr><td>${dateBR(x.date)}</td><td>${escapeHtml(x.description)}</td><td><span class="pill ${x.status}">${x.status==='paid'?'Confirmado':'Pendente'}</span></td><td class="right amount ${x.direction}">${money(x.amount)}</td></tr>`).join('')}</tbody></table>`:'<div class="empty"><strong>Bem-vinda à Central Financeira</strong>Comece cadastrando uma conta bancária ou um lançamento. Nenhum valor fictício foi incluído.</div>'}
+function renderAccounts(){$('accountCount').textContent=db.accounts.length+' conta(s) cadastrada(s)';$('accountsGrid').innerHTML=db.accounts.length?db.accounts.map(a=>{let bal=a.opening+db.entries.filter(x=>x.accountId===a.id&&x.status==='paid').reduce((s,x)=>s+(x.direction==='in'?x.amount:-x.amount),0);return `<div class="card"><div class="metric-label">${escapeHtml(a.bank)}</div><h3 style="margin:5px 0">${escapeHtml(a.label)}</h3><div class="metric">${money(bal)}</div><div class="metric-note">Saldo calculado a partir do saldo inicial e lançamentos confirmados</div><div style="margin-top:12px"><button class="btn danger" onclick="deleteAccount('${a.id}')">Excluir conta</button></div></div>`}).join(''):'<div class="card empty" style="grid-column:1/-1"><strong>Nenhuma conta cadastrada</strong>Adicione uma conta e informe o saldo inicial.</div>'}
+window.deleteAccount=id=>{if(confirm('Excluir esta conta? Os lançamentos vinculados permanecerão, mas ficarão sem conta.')){db.accounts=db.accounts.filter(a=>a.id!==id);save()}}
+function renderReports(){let m=$('reportMonth').value||monthNow(),t=monthTotals(m),p=db.entries.filter(x=>x.date?.startsWith(m)&&x.status==='pending');$('rIn').textContent=money(t.ins);$('rOut').textContent=money(t.outs);$('rNet').textContent=money(t.ins-t.outs);$('rPend').textContent=p.length;let cats={};db.entries.filter(x=>x.date?.startsWith(m)&&x.status==='paid'&&x.direction==='out').forEach(x=>cats[x.category||'Sem categoria']=(cats[x.category||'Sem categoria']||0)+x.amount);let vals=Object.entries(cats).sort((a,b)=>b[1]-a[1]),mx=Math.max(1,...vals.map(x=>x[1]));$('categoryReport').innerHTML=vals.length?vals.map(([n,v])=>`<div class="barline"><span>${escapeHtml(n)}</span><div class="bar"><i style="width:${v/mx*100}%"></i></div><b>${money(v)}</b></div>`).join(''):'<div class="empty">Sem saídas confirmadas no período.</div>'}
+function renderAll(){renderDashboard();renderEntries();renderAccounts();renderReports();$('storageInfo').textContent=`${db.accounts.length} conta(s) · ${db.entries.length} lançamento(s) · armazenamento local do navegador`}
+['searchEntry','filterStatus','filterDirection'].forEach(id=>$(id).addEventListener('input',renderEntries));$('reportMonth').value=monthNow();$('reportMonth').onchange=renderReports;
+function download(name,content,type){let a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+$('backupExport').onclick=()=>download('backup-central-financeira-raffani-'+today()+'.json',JSON.stringify({app:'Central Financeira IA',version:1,exportedAt:new Date().toISOString(),data:db},null,2),'application/json');
+$('backupImport').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let j=JSON.parse(await f.text());let d=j.data||j;if(!Array.isArray(d.accounts)||!Array.isArray(d.entries))throw Error('Arquivo não reconhecido');if(!confirm('Restaurar este backup? Os dados atuais serão substituídos.'))return;db=d;save();$('backupMsg').textContent='Backup restaurado com sucesso.'}catch(err){$('backupMsg').textContent='Não foi possível restaurar: '+err.message}e.target.value=''};
+$('clearData').onclick=()=>{if(confirm('Tem certeza? Todos os dados locais serão apagados permanentemente.')){db={accounts:[],entries:[]};save()}};
+$('exportCsv').onclick=()=>{let rows=[['Data','Descrição','Tipo','Status','Valor','Categoria','Conta','Observações'],...db.entries.map(x=>[x.date,x.description,x.direction,x.status,x.amount,x.category,accountName(x.accountId),x.notes||''])];let csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\n');download('lancamentos-raffani-'+today()+'.csv','\ufeff'+csv,'text/csv;charset=utf-8')};
+
+// Importação de planilhas diretamente na área de lançamentos.
+$('entrySheetFile').onchange=async e=>{
+ let f=e.target.files[0]; if(!f)return;
+ try{
+  let imported=[],ext=f.name.split('.').pop().toLowerCase();
+  if(ext==='csv'||ext==='txt'){
+   let txt=await f.text(),lines=txt.replace(/^\ufeff/,'').split(/\r?\n/).filter(Boolean);
+   let sep=lines[0].includes(';')?';':',';let head=lines.shift().split(sep).map(x=>x.replace(/"/g,'').trim().toLowerCase());
+   let ix=(...names)=>head.findIndex(h=>names.some(n=>h.includes(n)));
+   let di=ix('data','date'),de=ix('descr','hist','memo','favorecido'),va=ix('valor','amount');
+   if(va<0)throw Error('Não encontrei uma coluna de valor.');
+   imported=lines.map(l=>{let c=l.split(sep).map(x=>x.replace(/^"|"$/g,'').replace(/"/g,''));let raw=(c[va]||'0').replace(/\./g,'').replace(',','.');let v=Number(raw);let date=(c[di]||today()).trim();if(date.includes('/')){let [d,m,y]=date.split('/');date=`${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`}return {date,description:c[de]||'Lançamento importado de planilha',amount:Math.abs(v),direction:v>=0?'in':'out',status:'pending',category:'Outros',accountId:'',notes:'Importado de planilha — conferir antes de confirmar'}}).filter(x=>x.amount>0);
+  }else if(['xlsx','xls'].includes(ext)){
+   if(!window.XLSX)throw Error('Leitor Excel indisponível.');
+   let wb=XLSX.read(await f.arrayBuffer(),{type:'array'}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+   let h=rows.shift().map(x=>String(x).toLowerCase()),di=h.findIndex(x=>x.includes('data')),de=h.findIndex(x=>x.includes('descr')||x.includes('hist')||x.includes('favorecido')),va=h.findIndex(x=>x.includes('valor'));
+   if(va<0)throw Error('Não encontrei uma coluna de valor na primeira aba.');
+   imported=rows.map(r=>{let v=Number(String(r[va]).replace(/\./g,'').replace(',','.'));let dt=r[di] instanceof Date?r[di].toISOString().slice(0,10):String(r[di]||today());return {date:dt,description:String(r[de]||'Lançamento importado de planilha'),amount:Math.abs(v),direction:v>=0?'in':'out',status:'pending',category:'Outros',accountId:'',notes:'Importado de planilha — conferir antes de confirmar'}}).filter(x=>x.amount>0);
+  }else throw Error('Formato não suportado. Use CSV ou Excel.');
+  if(!imported.length)throw Error('Nenhuma linha com valor foi identificada.');
+  if(!confirm(`${imported.length} linha(s) identificada(s). Importar todas como PENDENTES para conferência?`))return;
+  imported.forEach(x=>db.entries.unshift({...x,id:uid(),createdAt:new Date().toISOString()}));save();
+  alert(`${imported.length} lançamento(s) importado(s) como pendentes. Revise antes de confirmar.`);
+ }catch(err){alert('Não foi possível importar a planilha: '+err.message)}
+ e.target.value='';
+};
+
+// Leitura assistida de e-mail fornecido pela usuária (.eml ou texto colado).
+$('emailFile').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ try{
+  const txt=await f.text();$('emailBody').value=txt;
+  const subj=(txt.match(/^Subject:\s*(.+)$/im)||[])[1];if(subj)$('emailSubject').value=subj.replace(/=\?[^?]+\?[BQ]\?([^?]+)\?=/g,'$1');
+ }catch(err){alert('Não foi possível ler o arquivo de e-mail.')}
+};
+$('analyzeEmail').onclick=()=>{
+ const body=$('emailBody').value.trim(),subject=$('emailSubject').value.trim();
+ if(!body){alert('Cole o conteúdo do e-mail ou carregue um arquivo .eml.');return}
+ const text=body.replace(/\s+/g,' ');
+ const candidates=[...text.matchAll(/(?:R\$\s*)?(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2})/g)].map(m=>Number(m[1].replace(/\./g,'').replace(',','.'))).filter(n=>n>0);
+ const amount=candidates.length?candidates.sort((a,b)=>b-a)[0]:null;
+ const dateMatch=text.match(/\b(\d{2})\/(\d{2})\/(\d{4})\b/);
+ const due=dateMatch?`${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`:today();
+ if(!amount){$('emailResult').textContent='Não encontrei um valor monetário claro. Revise o e-mail e cadastre o lançamento manualmente.';$('emailResult').classList.remove('hidden');return}
+ const direction=/recebimento|cr[eé]dito|dep[oó]sito|pagamento recebido|nota fiscal emitida/i.test(text)?'in':'out';
+ if(!confirm(`Foi identificado o valor ${money(amount)} como ${direction==='in'?'entrada':'saída'} com data ${dateBR(due)}. Criar como PENDENTE para sua conferência?`))return;
+ db.entries.unshift({id:uid(),direction,status:'pending',description:subject||'Lançamento identificado em e-mail',amount,date:due,accountId:'',category:'Outros',notes:'Sugestão extraída de e-mail. Conferir valor, vencimento e natureza antes de confirmar.',createdAt:new Date().toISOString()});
+ save();$('emailModal').classList.remove('show');showPage('lancamentos');alert('Sugestão criada como pendente. Confira os dados antes de confirmar.');
+};
+function parseOfx(txt){let blocks=txt.match(/<STMTTRN>[\s\S]*?<\/STMTTRN>/gi)||[];return blocks.map(b=>{let get=t=>(b.match(new RegExp('<'+t+'>([^<\\r\\n]+)','i'))||[])[1]||'';let dt=get('DTPOSTED').slice(0,8);return {date:dt?dt.slice(0,4)+'-'+dt.slice(4,6)+'-'+dt.slice(6,8):today(),description:get('NAME')||get('MEMO')||'Movimento importado',amount:Math.abs(Number(get('TRNAMT').replace(',','.'))),direction:Number(get('TRNAMT').replace(',','.'))>=0?'in':'out',status:'paid',category:'Outros',accountId:'',notes:'Importado de OFX'}}).filter(x=>x.amount>0)}
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let imported=[];let ext=f.name.split('.').pop().toLowerCase();if(['ofx','qfx'].includes(ext)){imported=parseOfx(await f.text())}else if(ext==='csv'||ext==='txt'){let txt=await f.text(),lines=txt.replace(/^\ufeff/,'').split(/\r?\n/).filter(Boolean);let sep=lines[0].includes(';')?';':',';let head=lines.shift().split(sep).map(x=>x.replace(/"/g,'').trim().toLowerCase());let ix=(...names)=>head.findIndex(h=>names.some(n=>h.includes(n)));let di=ix('data','date'),de=ix('descr','hist','memo'),va=ix('valor','amount');if(va<0)throw Error('Não encontrei coluna de valor.');imported=lines.map(l=>{let c=l.split(sep).map(x=>x.replace(/^"|"$/g,'').replace(/"/g,''));let raw=(c[va]||'0').replace(/\./g,'').replace(',','.');let v=Number(raw);let date=(c[di]||today()).trim();if(date.includes('/')){let [d,m,y]=date.split('/');date=`${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`}return {date,description:c[de]||'Movimento importado',amount:Math.abs(v),direction:v>=0?'in':'out',status:'paid',category:'Outros',accountId:'',notes:'Importado de CSV'}}).filter(x=>x.amount>0)}else if(['xlsx','xls'].includes(ext)){if(!window.XLSX)throw Error('Biblioteca de planilhas indisponível.');let wb=XLSX.read(await f.arrayBuffer(),{type:'array'}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});let h=rows.shift().map(x=>String(x).toLowerCase()),di=h.findIndex(x=>x.includes('data')),de=h.findIndex(x=>x.includes('descr')||x.includes('hist')),va=h.findIndex(x=>x.includes('valor'));if(va<0)throw Error('Não encontrei coluna de valor na primeira aba.');imported=rows.map(r=>{let v=Number(String(r[va]).replace(/\./g,'').replace(',','.'));let dt=r[di] instanceof Date?r[di].toISOString().slice(0,10):String(r[di]||today());return {date:dt,description:String(r[de]||'Movimento importado'),amount:Math.abs(v),direction:v>=0?'in':'out',status:'paid',category:'Outros',accountId:'',notes:'Importado de Excel'}}).filter(x=>x.amount>0)}else throw Error('Formato não suportado. Use OFX, CSV ou Excel.');if(!imported.length)throw Error('Nenhum movimento foi reconhecido.');let account=prompt('Digite o nome do banco/conta para vincular (deixe vazio para não vincular):')||'';let found=db.accounts.find(a=>(a.bank+' '+a.label).toLowerCase().includes(account.toLowerCase())&&account);imported.forEach(x=>db.entries.unshift({...x,id:uid(),accountId:found?.id||'',createdAt:new Date().toISOString()}));save();alert(`${imported.length} lançamento(s) importado(s) como confirmados. Confira os dados e a conciliação antes de usar nos relatórios.`)}catch(err){alert('Falha na importação: '+err.message)}e.target.value=''};
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+renderAll();
+</script>
+</body></html>

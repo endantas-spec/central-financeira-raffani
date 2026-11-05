@@ -1,0 +1,10 @@
+{
+  "name": "Central Financeira IA - Raffani",
+  "short_name": "Central Financeira",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f4",
+  "theme_color": "#14251f",
+  "lang": "pt-BR",
+  "icons": []
+}
